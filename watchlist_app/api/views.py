@@ -7,7 +7,7 @@ from rest_framework.response import Response
 class StreamPlatformList(APIView):
     def get(self, request):
         streams = StreamPlatfrom.objects.all()
-        serializer = StreamPlatfromSerializer(streams, many=True)
+        serializer = StreamPlatfromSerializer(streams, many=True, context={'request': request})
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     def post(self, request):
